@@ -1238,7 +1238,9 @@ class CCPluginCompile(cocos.CCPlugin):
                 shutil.copy(file_path, output_dir)
 
         # copy lua files & res
-        res_path = os.path.join(output_dir, "Resources")
+        # res_path = os.path.join(output_dir, "Resources")
+        # 直接把res/src拷贝到win32目录 2023/10/20
+        res_path = output_dir
         self._copy_resources(res_path)
 
         # check the project config & compile the script files
