@@ -1,4 +1,5 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
 # ----------------------------------------------------------------------------
 # cocos2d "compile" plugin
 #
@@ -1164,7 +1165,7 @@ class CCPluginCompile(cocos.CCPlugin):
         win32_projectdir = self._platforms.project_path()
         output_dir = self._output_dir
         # 在win32目录加了一个bin目录
-        output_dir = os.path.join(output_dir, "bin/")
+        output_dir = os.path.join(output_dir, "bin")
 
         cocos.Logging.info(MultiLanguage.get_string('COMPILE_INFO_BUILDING'))
 
@@ -1247,6 +1248,7 @@ class CCPluginCompile(cocos.CCPlugin):
         parent_path = os.path.dirname(output_dir)
         res_path = parent_path
         self._copy_resources(res_path)
+        # print('--------------------------------- output_dir:', output_dir, "res_path : ", res_path)
 
         # check the project config & compile the script files
         if self._project._is_js_project():
