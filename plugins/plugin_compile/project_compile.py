@@ -1163,6 +1163,8 @@ class CCPluginCompile(cocos.CCPlugin):
 
         win32_projectdir = self._platforms.project_path()
         output_dir = self._output_dir
+        # 在win32目录加了一个bin目录
+        output_dir = os.path.join(output_dir, "bin/")
 
         cocos.Logging.info(MultiLanguage.get_string('COMPILE_INFO_BUILDING'))
 
@@ -1240,7 +1242,10 @@ class CCPluginCompile(cocos.CCPlugin):
         # copy lua files & res
         # res_path = os.path.join(output_dir, "Resources")
         # 直接把res/src拷贝到win32目录 2023/10/20
-        res_path = output_dir
+        # res_path = output_dir
+        # 在win32目录加了一个bin目录，将res/src放到bin上一层 （也就是win32目录） 2023/10/23
+        parent_path = os.path.dirname(output_dir)
+        res_path = parent_path
         self._copy_resources(res_path)
 
         # check the project config & compile the script files
